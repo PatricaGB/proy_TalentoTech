@@ -1,0 +1,45 @@
+@value colors: "./color.module.css";
+@value color1, color2, color3, color4, color5, color6, color7 from colors;
+
+body{
+    text-align: center;
+    align-items: center;
+}
+
+.imgRg{
+    position: absolute;
+    top: 2vw; left: 3vw;
+    margin: 0;
+    width: 8%;
+    max-width: 10%;
+    min-width: 5%;
+}
+
+.tituloRg{
+    position: absolute;
+    top:5vw; left:45vw;
+    color: color6;
+}
+
+.tablaRg{
+    position: absolute;
+    top:15%; left: 30%;
+    align-items: center;
+    width: 50%;
+    margin: 2vw;
+}
+
+.tablaRg thead{
+    background: color1;
+}
+
+.tablaRg thead tr th{
+    color: color6;
+}
+
+.tablaRg tbody{
+    background-color: color4;
+    color: color6;
+}
+
+@media screen and (max-width: 768px) {}

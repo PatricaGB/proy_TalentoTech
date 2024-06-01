@@ -1,0 +1,56 @@
+@value colors: "./color.module.css";
+@value color1, color2, color3, color4, color5, color6 from colors;
+
+
+body{
+  align-items: center;
+  background-color: color2;
+}
+
+.menu{
+  background-color: color5;
+  width: 15%;
+  min-width: 10%;
+  height: auto;
+  border: solid 2px color1;
+  font-weight: bold;
+  
+}
+
+.menu ul{
+  list-style: none;
+  margin: 14vw 0;
+  padding: 0;
+}
+
+.menu ul li a{
+  color: color6; 
+  text-decoration: none;
+  display: block;
+  padding: 20px 30px 20px;
+  }
+
+.menu ul li a:hover{
+  background-color: color3;
+}
+
+@media screen and (max-width: 768px) {
+ .menu{
+    font-size: 1.5vw;
+    padding: auto;
+ }
+
+ .menu ul{
+  margin: 13vw -6vw auto;
+  }
+
+  .menu ul li a{
+    display: block;
+  }
+
+  .menu ul li a:hover{
+    margin: 0 5vw;
+  }
+
+}
+

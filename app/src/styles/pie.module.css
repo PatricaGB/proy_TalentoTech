@@ -1,0 +1,22 @@
+@value colors: "./color.module.css";
+@value color1, color2, color3, color4, color5, color6, color7 from colors;
+
+.pie{
+    background-color: color5;
+    border-top: solid 2px color7;
+    padding: 1vw;
+    margin: 2vw 0;
+    color: color6;
+    text-align: center;
+    
+}
+@media screen and (max-width: 768px) {
+    .pie{
+        font-size: 2vw;
+        text-align: center;
+        position: absolute;
+        bottom: -40%;
+        padding: 1vw 50%;
+        margin: 2vw 0;
+    }
+}

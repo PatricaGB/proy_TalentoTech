@@ -1,0 +1,124 @@
+@value colors: "./color.module.css";
+@value color1, color2, color3, color4, color5, color6, color7 from colors;
+
+body{
+    text-align: center;
+    align-items: center;
+}
+
+.ContProy{
+    position: absolute;
+    top: 3vw; left: 18vw;
+    width: 80%;
+    min-width: 50%;
+}
+
+.ContProy img{
+    position: absolute;
+    top: -1vw; left: -15vw;
+    margin: 0;
+    max-width: 10%;
+    min-width: 5%;
+}
+
+.ContProy h1{
+    margin: 1vw;
+    color: color6;
+    text-align: center;
+}
+
+.entradas{
+    position: absolute;
+    width: 50%;
+    top: 5vw; left: 28%;
+    background-color: color7;
+    margin: 5vw;
+    padding: 1.5vw;
+    min-width: 50%;
+}
+
+.entradas form{
+    background-color: color1;
+    padding: 1vw;
+    margin: 1vw;
+    min-width: 30%;
+}
+
+.partes{
+    text-align: center;
+    padding: 0.5vw 1vw 0.5vw;
+    color: color6;
+    position: relative;
+    left: 5vw;
+    min-width: 10%;
+}
+
+.titulo{
+    text-align: start;
+    font-size: 15px;
+    min-width: 10%;
+}
+
+.form button{
+    padding: 0.5vw 2vw;
+    min-width: 30%;
+    font-size: 15px;
+}
+
+.casilla{
+    border: solid 1px color7;
+    padding: 0.3vw 4vw;
+    position: relative;
+    top: -2vw; left: 1vw;
+    font-size: 14px;
+}
+
+.tablaForm{
+    position: relative;
+    top:-5vw; left: 25%;
+    align-items: center;
+    width: 60%;
+    margin: 2vw;
+}
+
+.tablaForm thead{
+    background: color1;
+   
+}
+
+.tablaForm tbody{
+    background-color: color4;
+}
+
+@media screen and (max-width: 768px) {
+    .ContProy h1{
+        font-size: 110%;
+        position: absolute;
+        left: 20%;
+    }
+    .titulo{
+        font-size: 8px;
+    }
+     .entradas{
+        position: absolute;
+        top: 10vw;
+        left: 30vw;
+    }
+     .partes{
+        position: relative;
+        left: 2vw;
+        padding: 0;
+    }
+    .casilla{
+        padding: 0;
+        font-size: 8px;
+        top: -4vw; left: 5vw;
+        align-items: end;
+    }
+    .form button{
+        padding: 0vw 2vw;
+        font-size: 8px;
+        position: relative;
+        top: -2vw;
+    }
+}
