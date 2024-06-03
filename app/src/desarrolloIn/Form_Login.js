@@ -1,46 +1,51 @@
-import React from "react";
-import {useState} from "react";
-import { useNavigate } from "react-router-dom";//para enrutar entre paginas
+import React, {useState} from "react";
 import estilo from "../styles/login.module.css";
-
-
+import { useNavigate } from "react-router-dom";//para enrutar entre paginas
 
 function FomularioIngreso(){
-    const [usuario,setUsuario]=useState("");
-    const [contraseña,setContraseña]=useState("");
-    const navegar=useNavigate();
-
-           
-    const Sumision=(event)=>{
-        event.preventDefault();
-        console.log("Enviando "+usuario+" "+contraseña)
-        if(usuario==="Usuario" && contraseña==="1234"){
-            alert("Bienvenid@ "+usuario);
-            navegar("/inicio")//lleva a la pagina de inicio
-        } 
-        else{
-            alert("Campos diligenciados son incorrectos")
+  const [username,setUsuario]=useState("");
+  const [password,setContraseña]=useState("");
+  const navegar=useNavigate();
+             
+  const Sumision= async (event)=>{
+      event.preventDefault();
+      console.log("Enviando "+username+" "+password)
+      const user = {username,password}
+      console.log(user);
+      try {
+        const response = await fetch('/proy/mongoDB/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user),
+        })
+        const data = await response.json();
+        console.log(data);
+        if({messaje:'Ingreso Exitoso', user}){
+          navegar('/inicio')
         }
         
-        
-    }
-    
+      } catch (error) {
+        console.error('Error al enviar el usuario'+ error);
+      }};
+
     return(
-        <div className={estilo.formulario}>
-            <form onSubmit={Sumision}>
-                <label> Ingrese Usuario:  
-                    <input name="usuario" type="text" value={usuario} placeholder="Escribe tu Usuario"
-                    onChange={(evento)=>setUsuario(evento.target.value)} required/>
-                </label>
-                <label>Ingrese Contraseña:  
-                    <input name="Contaseña" type="password" value={contraseña} placeholder="Escribe tu Contraseña"
-                    onChange={(evento)=>setContraseña(evento.target.value)} required></input>
-                </label>
-                <input className={estilo.boton} type="submit" value="Iniciar Sesión" />
-            </form>
-        </div>
-        
-    );
+      <div className={estilo.formulario}>
+      <form onSubmit={Sumision}>
+          <label> Ingrese Usuario:  
+              <input name="usuario" type="text" value={username} placeholder="Escribe tu Usuario"
+              onChange={(evento)=>setUsuario(evento.target.value)} required/>
+          </label>
+          <label>Ingrese Contraseña:  
+              <input name="Contaseña" type="password" value={password} placeholder="Escribe tu Contraseña"
+              onChange={(evento)=>setContraseña(evento.target.value)} required></input>
+          </label>
+          <input className={estilo.boton} type="submit" value="Iniciar Sesión" />
+      </form>
+  </div>
+  
+);
 }
 
 
