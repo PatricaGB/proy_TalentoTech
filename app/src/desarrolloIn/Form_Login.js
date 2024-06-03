@@ -22,12 +22,16 @@ function FomularioIngreso(){
         })
         const data = await response.json();
         console.log(data);
-        if({messaje:'Ingreso Exitoso', user}){
-          navegar('/inicio')
+        if(data.message === 'Ingreso Exitoso'){
+          navegar('/inicio');
+          alert('Ingreso Exitoso');
+        } else{
+          alert('Usuario y/o Contraseña incorrecta')
         }
         
       } catch (error) {
         console.error('Error al enviar el usuario'+ error);
+        
       }};
 
     return(
