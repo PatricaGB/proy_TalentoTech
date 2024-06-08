@@ -21,6 +21,9 @@ function FormularioProy(){
       })
       const data = await response.json();
       console.log(data);
+      if(data.message ==='Proyecto creado exitosamente'){
+        alert('Proyecto Ingresado Correctamente')
+      }
     } catch (error) {
       console.error('Error al enviar el formulario:'+ error);
     }};

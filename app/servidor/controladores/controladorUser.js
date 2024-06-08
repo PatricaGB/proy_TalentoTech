@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const bcrypt=require('bcrypt');
 const Usuario = require('../modelos/modeloUsuarios');
+const jwt = require('jsonwebtoken');
+const TOKEN = require('../config');
+
+const conectado = (req, res) => {
+    res.json({ mensaje: "Conectado" });
+  }
 
 const regUsuario = async (req, res) => {
     const { username, email, password } = req.body;
@@ -16,8 +22,8 @@ const regUsuario = async (req, res) => {
         else if (!username || !email || !password) {
             return res.status(400).json({ error: 'Se requiere ingresar los campos'});
         }
-        
-        const usuario = new Usuario({username, email, password});
+        let pass = await bcrypt.hash(password,8)
+        const usuario = new Usuario({username, email, password:pass});
         await usuario.save();
         res.status(201).json({ message: 'Usuario creado exitosamente', usuario });
         
@@ -38,9 +44,12 @@ const login = async (req, res) => {
         const passw= await Usuario.findOne({password:password});
         
             if (passw){
-                return res.status(201).json({ message: 'Ingreso Exitoso', user });
+                const token = jwt.sign({id:user._id}, TOKEN.TOKEN_SECRET, { expiresIn: '1h' })
+                const usuario_={id:user._id,username:user.username,email:user.email, token:token}
+                return res.status(201).json({ message: 'Ingreso Exitoso', usuario_}                
+                );
             }else{
-                return res.status(401).json({ error: 'Contraseña Inconrrecta'});
+                return res.status(401).json({ error: 'Contraseña Incorrecta'});
             }
         } else{
             return res.status(401).json({error:'el Usuario no existe'})
@@ -54,6 +63,7 @@ const login = async (req, res) => {
 
 
 module.exports={
+    conectado,
     regUsuario,
     login
 }

@@ -1,8 +1,12 @@
 import React,{useState} from "react";
 import estilo from "../styles/inRegister.module.css";
+import { useNavigate } from "react-router-dom";//para enrutar entre paginas
+
 
 function FormularioRegUsuario(){
     const [formUsuario, setFormUsuario] = useState({ username:'', email:'', password:''});
+    const navegar=useNavigate();
+
     const handleChange = (e) => {
     const {target}=e;
     const { name, value } = target;
@@ -21,6 +25,12 @@ function FormularioRegUsuario(){
       })
       const data = await response.json();
       console.log(data);
+      if(data.message === 'Usuario creado exitosamente'){
+        alert('Usuario creado exitosamente');
+        navegar('/');
+      } else{
+        alert('no se pudo crear el usuario');
+      }
     } catch (error) {
       console.error('Error al enviar el registro:'+ error);
     }};

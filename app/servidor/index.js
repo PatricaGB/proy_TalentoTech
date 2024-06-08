@@ -1,9 +1,13 @@
 const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require("cors");
 const connectDB = require('./DB/BaseDatos');
 const rutasMongoDB = require('./rutas/rutasMongoDB');
-const puerto = 3001;
+
+const TokenLogin = require('./intermediario/token');
+
+const puerto = process.env.PORT || 3001;
 
 //se verifica si el server inicia
 app.get('/', (req,res)=>{
@@ -23,6 +27,8 @@ app.get("/proy", (req,res)=>{
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+
+app.use(cors());
 /*//arreglo
 let proyectos=[
     {id:1, Contrato:"2830", Proyecto:"interventoria", Valor:12000, Plazo: 12, Fact: 1000},
@@ -42,6 +48,11 @@ app.post('/proy/registro', (req, res) => {
 app.get('/proy/registro', (req, res) => {
     res.json(proyectos);
 })*/
+
+//Rutas Token
+app.post('/auth', TokenLogin.TokenaCookieDB);
+// Ruta protegida
+app.use('/basedatos', TokenLogin.verifyTokenenCookie, rutasMongoDB);
 
 // Rutas base de datos
 app.use('/proy/mongoDB',rutasMongoDB);
