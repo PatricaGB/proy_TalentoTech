@@ -17,7 +17,7 @@ function RegistroProy(){
         .then((res)=>res.json())
         .then((datos)=>setDatos(datos));
     },[datos.length]);
-
+      
   return (
     <div>
         <img className={estilo.imgRg} src={Logo}/>

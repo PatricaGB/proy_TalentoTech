@@ -83,14 +83,14 @@
       .registrar{
         display: block;
         position: relative;
-        top: -9vw; left: 0vw;
+        top: -7vw; left: 0vw;
         text-align: center;
         text-decoration: none;
         background: color1;
         font-size: 14px;
         min-width: 80%;
         margin: 1.9vw;
-        padding: 1vw;
+        padding: 0.5vw;
         }
 
     .registrar ul{
