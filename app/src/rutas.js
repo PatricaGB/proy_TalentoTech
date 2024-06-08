@@ -4,7 +4,8 @@ import Proyectos from "./paginas/proyectos";
 import Pie from "./componentes/pie";
 import Registros from "./paginas/registros";
 import Login from "./paginas/login";
-import ProtecRuta from "./ProtecRuta";
+import NotFoundPage from "./paginas/notfound";
+
 import Registrar from "./paginas/registrar";
 
 function Rutas(){
@@ -13,11 +14,11 @@ function Rutas(){
             <Routes>
                 <Route path="/" element={<Login/>}/>
                 <Route path="/registrar" element={<Registrar/>}/>
-            <Route element={<ProtecRuta/>}>
                 <Route path="/inicio" element={<Inicio/>}/>
                 <Route path="/Proyectos" element={<Proyectos/>}/>
                 <Route path="/Registros" element={<Registros/>}/>
-            </Route>              
+                
+                <Route path="*" element={<NotFoundPage/>}/>       
             </Routes>
             <Pie/>
         </BrowserRouter>
